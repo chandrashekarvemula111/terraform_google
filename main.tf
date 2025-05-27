@@ -12,7 +12,13 @@ provider "google" {
   project = "gcbdr-gl-2"  
   region = "us-central1" # For subnets
 }
-
+#backend configuration
+backend "gcs" {
+   bucket = "terraform-secrets-bucket"
+   prefix = "terraform/state" # Optional, helps organize state files
+   region = "us-central1"
+  }
+}
 # VPC Network
 resource "google_compute_network" "main" {
   name                    = "my-vpc"
